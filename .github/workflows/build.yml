@@ -168,3 +168,4 @@ jobs:
         tag: ${{ github.event.inputs.release_tag }}
         file_glob: true
         prerelease: true
+
