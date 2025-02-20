@@ -124,21 +124,11 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Decode Keystore
-    #  uses: timheuer/base64-to-file@v1
-    #  id: android_keystore
-     # with:
-      #  fileName: "android_keystore.jks"
-      #  encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
-      run: |
-          # not use this output
-          # echo "KeyStore=yes" >> $GITHUB_OUTPUT
-          echo -e "\n" >> gradle.properties
-          echo RELEASE_KEY_ALIAS='${{ secrets.RELEASE_KEY_ALIAS }}' >> gradle.properties
-          echo RELEASE_KEY_PASSWORD='${{ secrets.RELEASE_KEY_PASSWORD }}' >> gradle.properties
-          echo RELEASE_STORE_PASSWORD='${{ secrets.RELEASE_STORE_PASSWORD }}' >> gradle.properties
-          echo RELEASE_STORE_FILE='./legado.jks' >> gradle.properties
-          echo ${{ secrets.RELEASE_KEY_STORE }} | base64 --decode > $GITHUB_WORKSPACE/legado.jks
-
+      uses: timheuer/base64-to-file@v1
+      id: android_keystore
+      with:
+        fileName: "android_keystore.jks"
+        encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
 
     - name: Build APK
       run: |
@@ -178,4 +168,3 @@ jobs:
         tag: ${{ github.event.inputs.release_tag }}
         file_glob: true
         prerelease: true
-
