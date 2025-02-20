@@ -127,7 +127,7 @@ jobs:
       uses: timheuer/base64-to-file@v1
       id: legado
       with:
-        fileName: "android_keystore.jks"
+        fileName: "legado.jks"
         encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
 
     - name: Build APK
