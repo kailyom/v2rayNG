@@ -125,7 +125,7 @@ jobs:
 
     - name: Decode Keystore
       uses: timheuer/base64-to-file@v1
-      id: android_keystore
+      id: legado
       with:
         fileName: "android_keystore.jks"
         encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
